@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Assam CTC tea, exploded: from plucking to packing in 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ECEEF0;--paper-2:#E1E4E8;--ink:#181B21;--ink-2:#545B67;--rule:#CBD0D6;--ember:#C9481A;--ice:#23799B;--stage:#12151B;
+  --thermal:linear-gradient(90deg,#1E2B55,#2A78A8,#7ACFC5,#F3D27A,#EE7B30,#C22B2D);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Schibsted Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0E1014;--paper-2:#161920;--ink:#E9E6E0;--ink-2:#9AA1AC;--rule:#272B33;--ember:#D98A3A;--ice:#5CB8D6;--stage:#090B0F;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0E1014;--paper-2:#161920;--ink:#E9E6E0;--ink-2:#9AA1AC;--rule:#272B33;--ember:#D98A3A;--ice:#5CB8D6;--stage:#090B0F;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 68px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.02rem;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#0B0D11}
+canvas{max-width:100%}
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(1rem,3.5vw,3rem)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:8;background:#0B0D11;color:#E9E6E0}
+header.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--thermal)}
+header.top .wrap{display:flex;align-items:center;gap:1rem;min-height:56px;flex-wrap:wrap;padding-top:.35rem;padding-bottom:.45rem}
+.mark{font-family:var(--serif);font-style:italic;font-size:1.3rem;margin-right:auto;white-space:nowrap}
+.mark small{font-family:var(--sans);font-style:normal;font-size:.78rem;color:#8E95A1;margin-left:.6rem}
+nav{display:flex;flex-wrap:wrap;gap:.1rem}
+nav button{font-family:var(--sans);font-size:.84rem;color:#9AA1AC;background:none;border:0;padding:.4rem .6rem;border-radius:6px;cursor:pointer;min-height:36px}
+nav button:hover{color:#fff}
+nav button i{font-family:var(--serif);font-style:italic;color:#F3B07A;margin-right:.3rem}
+#motion{border:1px solid #333944;border-radius:999px;color:#E9E6E0;margin-left:.4rem}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #F3B07A;outline-offset:2px}
+.hero{position:relative;height:clamp(32rem,88vh,52rem);background:#0B0D11;color:#EDE9E2;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.hero .copy{position:absolute;left:0;right:0;bottom:0;pointer-events:none}
+.hero .copy .wrap{padding-bottom:clamp(2rem,6vh,4.5rem)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(3.6rem,10.5vw,9.5rem);line-height:.86;letter-spacing:-.035em;margin:0 0 1.2rem;max-width:9ch}
+.hero h1 em{font-style:italic;font-weight:300}
+.hero p{font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.35;max-width:30em;margin:0 0 1.1rem;color:#D9D4CB}
+.hero .tools{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;pointer-events:auto}
+.hero .tools span{font-size:.85rem;color:#9AA1AC;margin-right:.3rem}
+.hero .credit{font-size:.82rem;color:#8E95A1;margin-top:1rem;max-width:44em}
+.hero .credit a{color:#C9CED6}
+.pill{font-family:var(--sans);font-size:.86rem;color:inherit;background:none;border:1px solid currentColor;border-radius:999px;padding:.38rem .9rem;cursor:pointer;min-height:36px;opacity:.75}
+.pill:hover{opacity:1}
+.pill[aria-pressed="true"]{opacity:1;background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hero .pill[aria-pressed="true"]{background:#EDE9E2;color:#0B0D11;border-color:#EDE9E2}
+.ch{padding:clamp(3.5rem,8vw,7rem) 0 clamp(2rem,5vw,4rem);border-top:1px solid var(--rule)}
+.ch:first-of-type{border-top:0}
+.chgrid{display:grid;grid-template-columns:minmax(0,25rem) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);align-items:start}
+@media (max-width:980px){.chgrid{grid-template-columns:minmax(0,1fr)}}
+.text{position:sticky;top:90px}
+@media (max-width:980px){.text{position:static}}
+.num{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(3.4rem,6vw,5.2rem);line-height:.8;color:var(--ember);margin:0 0 .6rem}
+.kind{font-weight:500;font-size:.88rem;color:var(--ink-2);margin:0 0 .3rem}
+.ch h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,3.4vw,2.9rem);line-height:1.04;letter-spacing:-.02em;margin:0 0 1.1rem}
+.prose p{font-family:var(--serif);font-size:1.16rem;line-height:1.55;margin:0 0 .9rem}
+.eq{border-left:2px solid var(--ember);padding:.4rem 0 .4rem 1rem;margin:1.25rem 0;font-family:var(--serif);font-size:1.2rem}
+.eq .law{font-style:italic;font-size:1.35rem}
+.eq .live{display:block;font-family:var(--sans);font-size:.9rem;color:var(--ink-2);margin-top:.35rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.eq + .eq{margin-top:-.5rem}
+.eq.dim{opacity:.35}
+.stage{position:relative;background:var(--stage);border-radius:6px;overflow:hidden}
+.stage canvas{display:block;width:100%;touch-action:pan-y;cursor:grab}
+.stage canvas:active{cursor:grabbing}
+.lbl{position:absolute;left:0;top:0;pointer-events:none;font-family:var(--serif);font-style:italic;font-size:15px;color:#EDE8DE;white-space:nowrap;padding:0 0 0 8px;margin-top:-10px;border-left:1px solid rgba(237,232,222,.55);transition:opacity .3s;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.lbl.r{transform-origin:right}
+.stage .tip{position:absolute;right:12px;bottom:10px;font-family:var(--serif);font-style:italic;font-size:14px;color:#8E95A1;pointer-events:none}
+.scale{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:#B8BEC8;pointer-events:none}
+.scale i{display:block;width:120px;height:6px;border-radius:3px;background:var(--thermal)}
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1rem 2rem;margin-top:1.25rem}
+.ctrl label{display:flex;justify-content:space-between;align-items:baseline;font-size:.86rem;color:var(--ink-2);margin-bottom:.25rem;gap:.5rem}
+.ctrl output{font-family:var(--serif);font-size:1.2rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.group{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+.group .gl{font-size:.86rem;color:var(--ink-2);width:100%}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--thermal);border-radius:2px}
+input[type=range]::-moz-range-track{height:3px;background:var(--thermal);border-radius:2px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);margin-top:-8px;cursor:grab}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);cursor:grab}
+.reads{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1rem;margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--rule)}
+.reads b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(1.45rem,2.4vw,2rem);line-height:1.05;font-variant-numeric:tabular-nums;white-space:nowrap}
+.reads span{display:block;font-size:.8rem;color:var(--ink-2);margin-top:.25rem;line-height:1.3}
+.share{display:flex;height:34px;margin-top:1.2rem;border-radius:4px;overflow:hidden;font-size:.78rem;color:#fff}
+.share div{display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;transition:flex-basis .3s;min-width:0}
+.chart{display:block;width:100%;margin-top:1.2rem}
+.insight{margin:1.2rem 0 0;padding-left:.9rem;border-left:3px solid var(--ice);font-size:.98rem}
+.end{background:#0B0D11;color:#E9E6E0;padding:clamp(3rem,7vw,5rem) 0}
+.end h2{font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(2rem,4vw,3rem);margin:0 0 1rem}
+.end p{max-width:46em;color:#AEB4BE;margin:0 0 .8rem}
+.end a{color:#E9E6E0}
+.btnrow{display:flex;flex-wrap:wrap;gap:.4rem}
+.note{font-size:.84rem;color:var(--ink-2);margin:.8rem 0 0;max-width:44em}
+.legend{display:flex;flex-wrap:wrap;gap:.9rem;font-size:.82rem;color:var(--ink-2);margin-top:.6rem}
+.legend span::before{content:"";display:inline-block;width:.8rem;height:.25rem;border-radius:2px;margin-right:.35rem;vertical-align:middle;background:var(--c)}
+.intro{background:#0B0D11;color:#EDE9E2;padding:clamp(2.5rem,6vw,4.5rem) 0 clamp(1.5rem,3vw,2.5rem)}
+.intro h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,8vw,7rem);line-height:.9;letter-spacing:-.035em;margin:0 0 1rem}
+.intro h1 em{font-style:italic}
+.intro p{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.4rem);max-width:40em;color:#D9D4CB;margin:0}
+.plantwrap{background:#0B0D11;padding:0 0 clamp(2rem,4vw,3rem)}
+.plant{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,25rem);gap:1.25rem;align-items:start}
+@media (max-width:1050px){.plant{grid-template-columns:minmax(0,1fr)}}
+.plant .stage{border-radius:6px}
+.plant .stage canvas{cursor:pointer}
+.plant .stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(5,6,9,.55) 100%)}
+.plant .lbl{font-size:13px;transition:opacity .4s,font-size .3s,color .3s;color:#C9CED6}
+.plant .lbl.on{font-size:17px;color:#FFE2C4;border-left-color:#D98A3A}
+#info .swap{animation:swapin .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes swapin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#info .swap{animation:none}}
+#info{background:#13161D;color:#E9E6E0;border-radius:6px;padding:1.25rem 1.35rem 1.4rem;border-top:3px solid #D98A3A;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow:auto}
+@media (max-width:1050px){#info{position:static;max-height:none}}
+#info .k{font-size:.8rem;color:#9AA1AC;margin:0 0 .2rem}
+#info h3{font-family:var(--serif);font-weight:400;font-size:1.9rem;line-height:1.05;margin:0 0 .7rem}
+#info p{font-family:var(--serif);font-size:1.05rem;line-height:1.5;margin:0 0 .8rem;color:#D9D4CB}
+#info .eq{border-left-color:#D98A3A;font-size:1.08rem;margin:.9rem 0}
+#info .eq .live{color:#AEB4BE}
+#info .lay{display:flex;flex-wrap:wrap;gap:.35rem;margin:.6rem 0 .2rem}
+#info .lay span{font-size:.76rem;border:1px solid #333944;border-radius:999px;padding:.15rem .6rem;color:#C9CED6}
+#info .hint{font-family:var(--serif);font-style:italic;color:#8E95A1;font-size:.95rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:1px;background:#262A33;border-radius:6px;overflow:hidden;margin-top:1rem}
+.kpis div{background:#13161D;padding:.7rem .9rem;color:#E9E6E0}
+.kpis b{display:block;font-family:var(--serif);font-weight:400;font-size:1.55rem;line-height:1.05;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpis span{font-size:.74rem;color:#9AA1AC}
+.kpis .div{color:#FF8A70}.kpis .fwd{color:#8FD07F}
+.ctl{background:#0B0D11;color:#E9E6E0;padding:0 0 clamp(2.5rem,5vw,4rem)}
+.ctl .panel{margin-top:0}
+.ctl .ctrl label{color:#9AA1AC}.ctl .ctrl output{color:#E9E6E0}
+.ctl input[type=range]::-webkit-slider-thumb{background:#0B0D11;border-color:#E9E6E0}
+.ctl input[type=range]::-moz-range-thumb{background:#0B0D11;border-color:#E9E6E0}
+.ctl .pill{color:#E9E6E0}.ctl .pill[aria-pressed="true"]{background:#E9E6E0;color:#0B0D11;border-color:#E9E6E0}
+.ctl canvas.chart{background:#13161D;border-radius:6px}
+.steps{display:flex;gap:.35rem;flex-wrap:wrap;margin:0 0 .8rem}
+.steps button{flex:1 1 7.5rem;display:flex;align-items:center;gap:.5rem;background:#13161D;color:#C9CED6;border:1px solid #262A33;border-radius:6px;padding:.45rem .6rem;cursor:pointer;font-family:var(--sans);font-size:.8rem;text-align:left;min-height:42px;transition:background .25s,border-color .25s,color .25s}
+.steps button i{font-style:normal;font-family:var(--serif);font-size:1.15rem;width:1.6rem;height:1.6rem;display:grid;place-items:center;border-radius:50%;background:var(--c);color:#0B0D11;flex:none}
+.steps button:hover{border-color:#5a5f6a;color:#fff}
+.steps button.on{background:#1F1A14;border-color:#D98A3A;color:#FFE2C4}
+#info table{width:100%;border-collapse:collapse;font-size:.84rem;margin:.4rem 0 .6rem}
+#info td{padding:.38rem .3rem;border-top:1px solid #262A33;vertical-align:top;color:#C9CED6}
+#info td:first-child{color:#E9E6E0;width:38%}
+#info td:nth-child(2){font-family:var(--serif);font-size:1rem;color:#FFE2C4;white-space:nowrap}
+#info h4{font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.02em;color:#D98A3A;margin:1.1rem 0 .35rem}
+#info ul{margin:.2rem 0 .4rem;padding-left:1.1rem;color:#C9CED6;font-size:.9rem}
+#info li{margin:.2rem 0}
+#info details{background:#1A1E26;border-radius:6px;padding:.6rem .8rem;margin-top:.4rem}
+#info summary{cursor:pointer;font-family:var(--serif);font-size:1.02rem;color:#E9E6E0}
+#info details p{margin:.5rem 0 0;font-size:.98rem}
+.learn{background:#0B0D11;color:#E9E6E0;padding:0 0 clamp(3rem,6vw,5rem)}
+.learn h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,3.6vw,2.8rem);margin:0 0 1rem}
+.learn .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,26rem),1fr));gap:2rem}
+.q{background:#13161D;border-radius:8px;padding:1rem 1.1rem;margin-bottom:.8rem}
+.q p{margin:0 0 .6rem;font-family:var(--serif);font-size:1.08rem}
+.q .opts{display:flex;flex-direction:column;gap:.35rem}
+.q button{text-align:left;font-family:var(--sans);font-size:.88rem;color:#E9E6E0;background:#1A1E26;border:1px solid #262A33;border-radius:6px;padding:.5rem .7rem;cursor:pointer;min-height:38px}
+.q button:hover{border-color:#5a5f6a}
+.q button.right{border-color:#8FD07F;background:#18301c}
+.q button.wrong{border-color:#FF8A70;background:#331c18}
+.q .fb{font-size:.86rem;color:#AEB4BE;margin:.5rem 0 0;min-height:1em}
+.gl dt{font-family:var(--serif);font-size:1.15rem;color:#FFE2C4;margin-top:.8rem}
+.gl dd{margin:.15rem 0 0;color:#C9CED6;font-size:.94rem}
+#qs{font-family:var(--serif);font-size:1.2rem;color:#D98A3A;margin:.2rem 0 1rem}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="mark">Assam CTC tea, exploded<small>Pickle &amp; Python</small></div>
+  <nav aria-label="Page"><button data-go="plant">Factory</button><button data-go="controls">Controls</button><button data-go="learn">Quiz</button><button id="motion" aria-pressed="false">Pause motion</button></nav>
+</div></header>
+<main>
+<section class="intro"><div class="wrap">
+  <h1>Assam CTC tea, <em>exploded</em></h1>
+  <p>From two leaves and a bud on an Upper Assam estate to a sealed sack of graded CTC tea, running live. Hover over any stage and it comes apart layer by layer, with the chemistry and engineering computed from the factory’s current settings. Click to lock a stage, drag to turn the estate.</p>
+</div></section>
+
+<section class="plantwrap" id="plant"><div class="wrap">
+  <div class="steps" id="steps" role="group" aria-label="Stages of manufacture"></div></div><div class="wrap plant">
+  <div>
+    <div class="stage"><canvas id="cP" aria-label="3D model of an Assam tea estate and CTC factory: tea garden with pluckers, withering troughs, rotorvane, CTC triplex, continuous fermenting machine, fluid bed dryer, fibre extractor and sifter, and packing, with leaf particles changing colour as they are processed"></canvas><div class="scale" style="gap:10px"><span style="color:#7DBA4A">● fresh</span><span style="color:#9AA048">● withered</span><span style="color:#C27A35">● oxidised</span><span style="color:#8A6A55">● made tea</span></div><div class="tip">hover to explode, click to lock, drag to turn</div></div>
+    <div class="kpis">
+      <div><b id="kL"></b><span>Green leaf in</span></div><div><b id="kM"></b><span>Made tea out</span></div><div><b id="kR"></b><span>Leaf per kg of tea</span></div>
+      <div><b id="kW"></b><span>Withering time</span></div><div><b id="kT"></b><span>Theaflavins : thearubigins</span></div><div><b id="kF"></b><span>Final moisture</span></div><div><b id="kQ"></b><span>Liquor verdict</span></div>
+    </div>
+  </div>
+  <aside id="info" aria-live="polite"></aside>
+</div></section>
+
+<section class="ctl" id="controls"><div class="wrap">
+  <div class="panel">
+    <div class="ctrl"><label for="lf">Green leaf intake <output id="lfOut"></output></label><input type="range" id="lf" min="1000" max="6000" step="100" value="3000"></div>
+    <div class="ctrl"><label for="wm">Wither to moisture <output id="wmOut"></output></label><input type="range" id="wm" min="62" max="74" step="0.5" value="69"></div>
+    <div class="ctrl"><label for="hy">Hygrometric difference of air <output id="hyOut"></output></label><input type="range" id="hy" min="0.5" max="6" step="0.1" value="3"></div>
+    <div class="ctrl"><label for="ro">CTC roller speed ratio <output id="roOut"></output></label><input type="range" id="ro" min="5" max="12" step="0.5" value="10"></div>
+    <div class="ctrl"><label for="ft">Fermentation time <output id="ftOut"></output></label><input type="range" id="ft" min="20" max="140" step="1" value="65"></div>
+    <div class="ctrl"><label for="fT">Fermentation temperature <output id="fTOut"></output></label><input type="range" id="fT" min="20" max="34" step="0.5" value="25"></div>
+    <div class="ctrl"><label for="di">Dryer inlet air <output id="diOut"></output></label><input type="range" id="di" min="95" max="150" step="1" value="125"></div>
+    <div class="group"><span class="gl">View</span><button class="pill" id="xall" aria-pressed="false">Explode everything</button><button class="pill" id="tour" aria-pressed="false">Guided tour</button><button class="pill" id="home">Overview</button></div>
+    <div class="group"><span class="gl">Scenarios</span><button class="pill" id="sMon">Monsoon humidity</button><button class="pill" id="sOver">Over-fermented</button><button class="pill" id="sUnder">Under-fired dryer</button><button class="pill" id="sReset">Best practice</button></div>
+  </div>
+  <div class="two" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:1rem;margin-top:1rem">
+    <canvas class="chart" id="uK" height="250" aria-label="Fermentation kinetics: catechins falling, theaflavins rising to a peak then falling, thearubigins rising"></canvas>
+    <canvas class="chart" id="uM" height="250" aria-label="Leaf moisture at each stage of manufacture"></canvas>
+  </div>
+  <canvas class="chart" id="uG" height="200" aria-label="Grade distribution of the made tea after sorting"></canvas>
+  <p class="note" style="color:#9AA1AC">Values follow typical Assam CTC practice: fine plucking of two leaves and a bud, a 12 to 18 hour wither to about 69% moisture, three CTC cuts, 60 to 90 minutes of oxidation at 24 to 27 °C, fluid bed drying to about 3% moisture, and grading into BOP, BP, PF, PD and Dust. Kinetic constants and grade sizes are illustrative, tuned to match published ranges.</p>
+</div></section>
+</main>
+<section class="learn" id="learn"><div class="wrap grid">
+  <div><h2>Check your understanding</h2><p id="qs"></p><div id="quiz"></div></div>
+  <div><h2>Glossary</h2><dl class="gl" id="gloss"></dl></div>
+</div></section>
+<footer class="end"><div class="wrap"><h2>From bud to brew.</h2><p>Every number is computed live: moisture mass balances, psychrometric withering rates, roller surface speeds, consecutive first-order oxidation of catechins to theaflavins and thearubigins with temperature-dependent rate constants, dryer evaporation and energy, minimum fluidisation velocity, and Rosin–Rammler particle grading. Built by Pickle &amp; Python.</p></div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id),clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),rnd=(a,b)=>a+Math.random()*(b-a);
+const fmt=(v,d=0)=>Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const W3=v=>Math.abs(v)>=1e4?fmt(v/1000,1)+' kW':fmt(v,Math.abs(v)<10?1:0)+' W';
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let paused=reduce;
+const mBtn=$('motion');const syncM=()=>{mBtn.setAttribute('aria-pressed',paused?'true':'false');mBtn.textContent=paused?'Play motion':'Pause motion'};syncM();mBtn.onclick=()=>{paused=!paused;syncM()};
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>$(b.dataset.go).scrollIntoView({behavior:reduce?'auto':'smooth'}));
+const H0=location.hash.slice(1);if(['plant'].includes(H0))setTimeout(()=>$(H0).scrollIntoView(),120);
+function pills(sel,cb){const bs=[...document.querySelectorAll(sel)];bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(o=>o.setAttribute('aria-pressed',o===b?'true':'false'));cb(b)}));return bs}
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+
+if(typeof THREE==='undefined'){document.querySelectorAll('.stage').forEach(s=>{s.insertAdjacentHTML('beforeend','<p style="color:#ccc;padding:2rem">The 3D library could not load. Check your connection and reload.</p>')});return}
+
+/* ---------- colour map and helpers ---------- */
+const CM=['#1E2B55','#2A78A8','#7ACFC5','#F3D27A','#EE7B30','#C22B2D'].map(h=>new THREE.Color(h));
+function tcol(t,out){t=clamp(t,0,1)*5;const i=Math.min(4,Math.floor(t));return out.copy(CM[i]).lerp(CM[i+1],t-i)}
+const _c=new THREE.Color();
+function sprTex(){const c=document.createElement('canvas');c.width=c.height=64;const g=c.getContext('2d');const gr=g.createRadialGradient(32,32,0,32,32,32);
+  gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.25,'rgba(255,255,255,.8)');gr.addColorStop(.6,'rgba(255,255,255,.18)');gr.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(0,0,64,64);return new THREE.CanvasTexture(c)}
+const SPR=sprTex();
+function cloud(n,size){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(n*3),3));g.setAttribute('color',new THREE.BufferAttribute(new Float32Array(n*3),3));
+  const m=new THREE.PointsMaterial({size,map:SPR,vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,sizeAttenuation:true});const p=new THREE.Points(g,m);p.frustumCulled=false;return p}
+function setPt(p,i,x,y,z,t,bright){const a=p.geometry.attributes;a.position.setXYZ(i,x,y,z);tcol(t,_c);const b=bright==null?1:bright;a.color.setXYZ(i,_c.r*b,_c.g*b,_c.b*b)}
+function flush(p){p.geometry.attributes.position.needsUpdate=true;p.geometry.attributes.color.needsUpdate=true}
+function colorize(geo,fn){const p=geo.attributes.position;let c=geo.attributes.color;if(!c){c=new THREE.BufferAttribute(new Float32Array(p.count*3),3);geo.setAttribute('color',c)}
+  for(let i=0;i<p.count;i++){tcol(fn(p.getX(i),p.getY(i),p.getZ(i)),_c);c.setXYZ(i,_c.r,_c.g,_c.b)}c.needsUpdate=true}
+const heatMat=o=>new THREE.MeshStandardMaterial(Object.assign({vertexColors:true,roughness:.55,metalness:.08},o||{}));
+const glass=(op,col)=>new THREE.MeshStandardMaterial({color:col||0x9fb6c8,transparent:true,opacity:op,roughness:.15,metalness:.1,depthWrite:false,side:THREE.DoubleSide});
+function dispose(o){o.traverse(c=>{if(c.geometry)c.geometry.dispose();if(c.material&&c.material!==SHARED)(Array.isArray(c.material)?c.material:[c.material]).forEach(m=>m.dispose())})}
+const SHARED=null;
+function line(pts,col,op){const g=new THREE.BufferGeometry().setFromPoints(pts.map(p=>new THREE.Vector3(...p)));return new THREE.Line(g,new THREE.LineBasicMaterial({color:col,transparent:true,opacity:op==null?1:op}))}
+
+/* ---------- stages ---------- */
+const stages=[];const io=new IntersectionObserver(es=>es.forEach(e=>{const S=stages.find(s=>s.cv===e.target);if(S)S.vis=e.isIntersecting}),{rootMargin:'120px'});
+function stage(id,o){const cv=$(id),wrap=cv.parentElement;const r=new THREE.WebGLRenderer({canvas:cv,antialias:true});r.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
+  const sc=new THREE.Scene();sc.background=new THREE.Color(cssv('--stage')||'#12151B');const cm=new THREE.PerspectiveCamera(o.fov||36,1.6,.1,300);
+  sc.add(new THREE.AmbientLight(0xffffff,.78));const dl=new THREE.DirectionalLight(0xffffff,.55);dl.position.set(5,9,7);sc.add(dl);const rl=new THREE.DirectionalLight(0x8fb0ff,.3);rl.position.set(-7,3,-6);sc.add(rl);
+  const S={cv,wrap,r,sc,cm,ratio:o.ratio||.62,base:o.yaw||.6,yaw:o.yaw||.6,pitch:o.pitch||.3,dist:o.dist||10,tg:new THREE.Vector3(...(o.target||[0,0,0])),fill:!!o.fill,orbit:o.orbit!==false,auto:true,idle:0,clock:0,labels:[],vis:false,update:null};
+  if(S.orbit){let down=false,lx=0,ly=0,mouse=false;
+    cv.addEventListener('pointerdown',e=>{down=true;lx=e.clientX;ly=e.clientY;mouse=e.pointerType==='mouse';if(mouse)try{cv.setPointerCapture(e.pointerId)}catch(_){};S.idle=0;S.auto=false});
+    cv.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;S.yaw-=dx*.008;if(mouse)S.pitch=clamp(S.pitch+dy*.006,-.2,1.35);S.idle=0});
+    ['pointerup','pointercancel'].forEach(t=>cv.addEventListener(t,()=>{down=false}))}
+  stages.push(S);io.observe(cv);return S}
+function label(S,text,pos,right){const el=document.createElement('div');el.className='lbl';el.textContent=text;if(right){el.style.borderLeft='0';el.style.borderRight='1px solid rgba(237,232,222,.55)';el.style.padding='0 8px 0 0'}
+  S.wrap.appendChild(el);const L={el,pos:new THREE.Vector3(...pos),show:true,right};S.labels.push(L);return L}
+const _v=new THREE.Vector3();
+function draw(S,dt){const w=S.cv.clientWidth;let h=S.fill?S.wrap.clientHeight:Math.round(w*(window.innerWidth<700?Math.min(1,S.ratio*1.45):S.ratio));
+  if(S._w!==w||S._h!==h){S.r.setSize(w,h,false);if(!S.fill)S.cv.style.height=h+'px';S.cm.aspect=w/h;S.cm.updateProjectionMatrix();S._w=w;S._h=h}
+  S.clock+=dt;S.idle+=dt;if(!S.auto&&S.idle>7)S.auto=true;
+  if(S.auto&&S.orbit&&!paused)S.yaw+=(S.base+.32*Math.sin(S.clock*.22)-S.yaw)*Math.min(1,dt*.6);
+  const cp=Math.cos(S.pitch);S.cm.position.set(S.tg.x+S.dist*cp*Math.sin(S.yaw),S.tg.y+S.dist*Math.sin(S.pitch),S.tg.z+S.dist*cp*Math.cos(S.yaw));S.cm.lookAt(S.tg);
+  S.r.render(S.sc,S.cm);
+  for(const L of S.labels){_v.copy(L.pos).project(S.cm);const ok=L.show&&_v.z<1&&Math.abs(_v.x)<1.05&&Math.abs(_v.y)<1.05;L.el.style.opacity=ok?(L.dim?.38:1):0;L.el.classList.toggle('on',!L.dim);
+    const px=(_v.x*.5+.5)*w,py=(-_v.y*.5+.5)*h;L.el.style.transform=L.right?`translate(calc(${px}px - 100%),${py}px)`:`translate(${px}px,${py}px)`}}
+function chart(id){const cv=$(id);const d=window.devicePixelRatio||1,w=cv.clientWidth,h=+cv.getAttribute('height');if(cv._w!==w||cv._d!==d){cv.width=w*d;cv.height=h*d;cv.style.height=h+'px';cv._w=w;cv._d=d}
+  const x=cv.getContext('2d');x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,w,h);return[x,w,h]}
+const CK={ink:()=>cssv('--ink'),ink2:()=>cssv('--ink-2'),rule:()=>cssv('--rule')};
+const hex=t=>'#'+tcol(t,_c).getHexString();
+
+/* ================= process model ================= */
+const PR={leaf:3000,Mf:.69,hyg:3,ratio:10,tf:65,Tf:25,Tin:125};const X={};const Mi=.77,C0=20,Y=.115,LOAD=28,TROUGH=54;
+function kin(T){return{k1:.022*Math.pow(1.8,(T-25)/10),k2:.010*Math.pow(2.4,(T-25)/10)}}
+function ferm(t,T){const{k1,k2}=kin(T),C=C0*Math.exp(-k1*t),used=C0-C,TF=Y*C0*k1/(k2-k1)*(Math.exp(-k1*t)-Math.exp(-k2*t)),TR=.8*(1-Y)*used+(Y*used-TF);return{C,TF,TR}}
+function rr(d,d63){return Math.exp(-Math.pow(d/d63,2.4))}
+function solve(){const DM=PR.leaf*(1-Mi),wl=DM/(1-PR.Mf),W1=PR.leaf-wl,wrem=(Mi-PR.Mf)/(1-PR.Mf),tw=wrem/(.006*PR.hyg);
+  const area=PR.leaf*tw/LOAD,troughs=Math.ceil(area/TROUGH),pluck=PR.leaf*12/24;
+  const D=.2,Nf=700,Ns=Nf/PR.ratio,vf=Math.PI*D*Nf/60,vs=Math.PI*D*Ns/60,d63=1.05*Math.pow(10/PR.ratio,.55);
+  const{k1,k2}=kin(PR.Tf),tstar=Math.log(k1/k2)/(k1-k2),F=ferm(PR.tf,PR.Tf),Fpk=ferm(tstar,PR.Tf);
+  const Mfin=clamp(.03*Math.pow(125/PR.Tin,3),.015,.09),Wd=DM*(PR.Mf/(1-PR.Mf)-Mfin/(1-Mfin)),made=DM/(1-Mfin)*.965,fibre=DM/(1-Mfin)*.035;
+  const Qd=Wd/3600*2.45e6/.6,Tout=PR.Tin-40,mair=Qd*.6/(1010*(PR.Tin-Tout)),umf=Math.pow(8e-4,2)*1100*9.81/(1650*2.3e-5);
+  const bins=[['BOP',1.4,9],['BP',1.0,1.4],['PF',.7,1.0],['PD',.5,.7],['Dust',0,.5]].map(([n,a,b])=>[n,rr(a,d63)-rr(b,d63)]);
+  const tot=bins.reduce((s,b)=>s+b[1],0);bins.forEach(b=>b[1]/=tot);const top=bins.reduce((a,b)=>b[1]>a[1]?b:a);
+  let verdict,state;const dt=PR.tf-tstar;
+  if(PR.tf<tstar-20){verdict='Green, raw';state='under'}else if(PR.tf>tstar+30){verdict='Dull, flat';state='over'}else if(Mfin>.045){verdict='Soft, poor keeping';state='wet'}else if(PR.Tin>142){verdict='High-fired';state='burnt'}else if(F.TF>.95*Fpk.TF-0.15&&Math.abs(dt)<=15){verdict='Bright, brisk';state='best'}else{verdict='Good';state='ok'}
+  Object.assign(X,{DM,wl,W1,wrem,tw,area,troughs,pluck,vf,vs,Ns,d63,k1,k2,tstar,F,Fpk,Mfin,Wd,made,fibre,Qd,Tout,mair,umf,bins,top,verdict,state,ratioLT:PR.leaf/made,ctcRise:3*PR.ratio/10})}
+solve();
+/* leaf colour states */
+const LC=[['#6FB443',0],['#93A04A',.18],['#4E9A3E',.32],['#B8742F',.6],['#5A3A26',.82],['#3A2618',1]].map(([h,s])=>[new THREE.Color(h),s]);
+function leafCol(s,out){s=clamp(s,0,1);for(let i=1;i<LC.length;i++){if(s<=LC[i][1]){const f=(s-LC[i-1][1])/(LC[i][1]-LC[i-1][1]);return out.copy(LC[i-1][0]).lerp(LC[i][0],f)}}return out.copy(LC[LC.length-1][0])}
+function setPtC(p,i,x,y,z,col,b){const a=p.geometry.attributes;a.position.setXYZ(i,x,y,z);a.color.setXYZ(i,col.r*b,col.g*b,col.b*b)}
+/* ================= scene ================= */
+const S=stage('cP',{ratio:.62,yaw:.5,pitch:.48,dist:44,target:[-2,1.5,0],fov:38});S.base=.5;
+S.sc.background=new THREE.Color('#0E1412');S.sc.add(new THREE.HemisphereLight(0xfff2dc,0x1b2a1f,.55));
+S.r.toneMapping=THREE.ACESFilmicToneMapping;S.r.toneMappingExposure=1.12;S.r.shadowMap.enabled=true;S.r.shadowMap.type=THREE.PCFSoftShadowMap;S.sc.fog=new THREE.FogExp2(0x0E1412,.011);
+const key=new THREE.DirectionalLight(0xffe6c2,.95);key.position.set(-18,24,14);key.castShadow=true;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-34,right:34,top:20,bottom:-20,near:1,far:90});key.shadow.bias=-.0005;key.shadow.radius=4;S.sc.add(key);
+const rim=new THREE.DirectionalLight(0x8fb8ff,.4);rim.position.set(16,8,-18);S.sc.add(rim);const sweep=new THREE.PointLight(0xffb27a,1.1,18,2);sweep.position.set(0,6,5);S.sc.add(sweep);
+const spot=new THREE.SpotLight(0xffd8ac,0,26,.42,.55,1.6);spot.position.set(0,14,0);S.sc.add(spot);S.sc.add(spot.target);
+const fc=document.createElement('canvas');fc.width=fc.height=512;{const g=fc.getContext('2d');const gr=g.createRadialGradient(256,256,20,256,256,256);gr.addColorStop(0,'#2b302a');gr.addColorStop(.6,'#171c18');gr.addColorStop(1,'#0e1412');g.fillStyle=gr;g.fillRect(0,0,512,512)}
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(90,50),new THREE.MeshStandardMaterial({map:new THREE.CanvasTexture(fc),roughness:.6,metalness:.2}));floor.rotation.x=-Math.PI/2;floor.position.set(3,-.01,0);floor.receiveShadow=true;S.sc.add(floor);
+const field=new THREE.Mesh(new THREE.PlaneGeometry(15,15),new THREE.MeshStandardMaterial({color:0x22331f,roughness:1}));field.rotation.x=-Math.PI/2;field.position.set(-21,0,0);field.receiveShadow=true;S.sc.add(field);
+for(let i=0;i<7;i++){const h=new THREE.Mesh(new THREE.ConeGeometry(rnd(6,11),rnd(3,6),5),new THREE.MeshStandardMaterial({color:0x162219,roughness:1}));h.position.set(-34+i*11,0,-26-rnd(0,6));S.sc.add(h)}
+const roofPts=[];const rx0=-13,rx1=23,rz=6.5,ry=5.2,rp=7.4;[[rx0,0,-rz],[rx0,ry,-rz],[rx0,rp,0],[rx0,ry,rz],[rx0,0,rz]].forEach(()=>{});
+for(let x=rx0;x<=rx1;x+=6){S.sc.add(line([[x,0,-rz],[x,ry,-rz],[x,rp,0],[x,ry,rz],[x,0,rz]],0x56604f,.35))}[[-rz,ry],[0,rp],[rz,ry]].forEach(([z,y])=>S.sc.add(line([[rx0,y,z],[rx1,y,z]],0x56604f,.35)));
+const M={steel:new THREE.MeshStandardMaterial({color:0xb9c2cf,metalness:.55,roughness:.3}),dark:new THREE.MeshStandardMaterial({color:0x474e57,metalness:.5,roughness:.45}),
+  green:new THREE.MeshStandardMaterial({color:0x2f6b4f,metalness:.3,roughness:.45}),wood:new THREE.MeshStandardMaterial({color:0x6b4a2e,roughness:.85}),
+  glassM:new THREE.MeshStandardMaterial({color:0xcfe0d6,transparent:true,opacity:.16,roughness:.1,depthWrite:false,side:THREE.DoubleSide}),
+  inner:new THREE.MeshStandardMaterial({color:0x9aa6b5,metalness:.5,roughness:.3,transparent:true,opacity:.45,side:THREE.DoubleSide}),
+  mesh:new THREE.MeshBasicMaterial({color:0x9aa6b5,wireframe:true,transparent:true,opacity:.5}),bush:new THREE.MeshStandardMaterial({color:0x3f7a35,roughness:.9}),
+  sack:new THREE.MeshStandardMaterial({color:0xcdb48a,roughness:.9}),jute:new THREE.MeshStandardMaterial({color:0xa98a5a,roughness:1})};
+const box=(w,h,d,m)=>new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m),cyl=(rt,rb,h,m,seg,open,ts,tl)=>new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,seg||32,1,!!open,ts||0,tl||Math.PI*2),m);
+const units=[],hits=[];
+function unit(name,pos,build,info,focus){const g=new THREE.Group();g.position.set(...pos);S.sc.add(g);const U={name,g,layers:[],e:0,te:0,info,focus:focus||9,fx:null};
+  U.L=(obj,dir,dist,nm)=>{obj.userData.base=obj.position.clone();U.layers.push({obj,dir:new THREE.Vector3(...dir).normalize(),dist,nm});g.add(obj);return obj};build(U,g);
+  const b=new THREE.Box3().setFromObject(g),sz=b.getSize(new THREE.Vector3()),c=b.getCenter(new THREE.Vector3());const hb=new THREE.Mesh(new THREE.BoxGeometry(sz.x+.4,Math.max(sz.y,1.5)+.4,sz.z+.4),new THREE.MeshBasicMaterial({visible:false}));hb.position.copy(c);hb.userData.u=U;S.sc.add(hb);hits.push(hb);
+  U.center=c;U.top=new THREE.Vector3(c.x,b.max.y+.7,c.z);U.lbl=label(S,name,[U.top.x,U.top.y,U.top.z]);units.push(U);return U}
+const easeOut=x=>1-Math.pow(1-x,3),easeBack=x=>{const c=1.4;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};let CLK=0;
+const leadM=new THREE.LineDashedMaterial({color:0xE8B070,dashSize:.12,gapSize:.1,transparent:true,opacity:0});
+function applyExplode(U){const n=U.layers.length,st=.1,opening=U.te>U.e;let k=0;
+  for(const l of U.layers){const loc=clamp(U.e*(1+st*(n-1))-st*(opening?k:(n-1-k)),0,1),ee=loc<=0?0:opening?easeBack(loc):easeOut(loc);
+    l.obj.position.copy(l.obj.userData.base).addScaledVector(l.dir,l.dist*ee);if(l.dist>0)l.obj.position.y+=Math.sin(CLK*1.6+k)*.035*ee;
+    if(l.dist>.3){if(!l.ln){const g=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]);l.ln=new THREE.Line(g,leadM.clone());U.g.add(l.ln)}
+      const p=l.ln.geometry.attributes.position;p.setXYZ(0,l.obj.userData.base.x,l.obj.userData.base.y,l.obj.userData.base.z);p.setXYZ(1,l.obj.position.x,l.obj.position.y,l.obj.position.z);p.needsUpdate=true;l.ln.computeLineDistances();l.ln.material.opacity=ee*.55;l.ln.visible=ee>.02}k++}
+  if(U.fx)U.fx(easeOut(clamp(U.e,0,1)))}
+const f1=v=>fmt(v,1),f0=v=>fmt(v,0),f2=v=>fmt(v,2),kg=v=>fmt(v,0)+' kg/h',kW=w=>fmt(w/1000,0)+' kW';
+
+/* ================= units ================= */
+const garden=unit('Tea garden, Upper Assam',[-21,0,0],U=>{const n=49,ig=new THREE.InstancedMesh(new THREE.SphereGeometry(1,16,10),M.bush,n);const m4=new THREE.Matrix4(),q=new THREE.Quaternion(),sv=new THREE.Vector3();let i=0;
+  for(let a=0;a<7;a++)for(let b=0;b<7;b++){m4.compose(new THREE.Vector3(-6+a*2+rnd(-.2,.2),.45,-6+b*2+rnd(-.15,.15)),q,sv.set(rnd(.75,.9),rnd(.42,.52),rnd(.7,.85)));ig.setMatrixAt(i++,m4)}ig.castShadow=true;ig.receiveShadow=true;U.g.add(ig);
+  for(const [x,z] of[[-4,-3],[3,-5],[-1,4],[5,2],[-6,6]]){const t=cyl(.12,.16,4.2,M.wood,8);t.position.set(x,2.1,z);U.g.add(t);const c=new THREE.Mesh(new THREE.SphereGeometry(1.6,14,10),new THREE.MeshStandardMaterial({color:0x2f5a2c,roughness:.9}));c.scale.y=.35;c.position.set(x,4.3,z);U.g.add(c)}
+  U.pl=[];for(const [x,z] of[[-3,-1],[1,1],[3,-3],[-1,-5]]){const p=new THREE.Group();const body=cyl(.18,.24,.9,new THREE.MeshStandardMaterial({color:[0xc0392b,0xd4a017,0x8e44ad,0x16a085][U.pl.length],roughness:.8}),12);body.position.y=.95;p.add(body);
+    const hd=new THREE.Mesh(new THREE.SphereGeometry(.15,12,10),new THREE.MeshStandardMaterial({color:0x6b4a32}));hd.position.y=1.55;p.add(hd);const bk=cyl(.28,.15,.45,M.jute,12,true);bk.position.set(0,1.25,-.25);p.add(bk);p.position.set(x,0,z);U.g.add(p);U.pl.push(p)}
+  U.anat=[];const leafM=new THREE.MeshStandardMaterial({color:0x5aa23c,roughness:.6,side:THREE.DoubleSide}),budM=new THREE.MeshStandardMaterial({color:0xb7d68a,roughness:.5});
+  const mk=(geo,mat,pos,sc,rot)=>{const m=new THREE.Mesh(geo,mat);m.position.set(...pos);if(sc)m.scale.set(...sc);if(rot)m.rotation.set(...rot);return m};
+  const stalk=mk(new THREE.CylinderGeometry(.06,.08,2.6,10),new THREE.MeshStandardMaterial({color:0x7a8a3a}),[-2,4.2,0]);U.L(stalk,[0,1,0],1.2,'stalk');U.anat.push(stalk);
+  const bud=mk(new THREE.SphereGeometry(.3,16,12),budM,[-2,5.7,0],[.55,1.4,.55]);U.L(bud,[0,1,0],2.2,'bud, the richest in catechins');U.anat.push(bud);
+  const l1=mk(new THREE.SphereGeometry(.7,20,10),leafM,[-1.3,5.2,0],[1,.06,.45],[0,0,.5]);U.L(l1,[1,1,0],1.6,'first leaf');U.anat.push(l1);
+  const l2=mk(new THREE.SphereGeometry(.85,20,10),leafM,[-2.8,4.6,0],[1,.06,.45],[0,0,-.5]);U.L(l2,[-1,1,0],1.6,'second leaf');U.anat.push(l2);
+  const secs=[['cuticle, waxy',.05,0xe9f0d0,true],['upper epidermis',.12,0x9fcf7a],['palisade cells, chloroplasts with oxidase',.4,0x3f8f35],['spongy mesophyll, vacuoles full of catechins',.4,0x6aa84f],['lower epidermis with stomata',.12,0x9fcf7a]];let y=4.2;
+  secs.forEach(([nm,h,c,tr],k)=>{const s=mk(new THREE.BoxGeometry(2.4,h,1.4),new THREE.MeshStandardMaterial({color:c,roughness:.6,transparent:!!tr,opacity:tr?.55:1}),[3.2,y,0]);y-=h+.02;U.L(s,[0,1,0],.4+(4-k)*.45,nm);U.anat.push(s)});
+  U.anat.forEach(o=>o.visible=false);U.fx=e=>{U.anat.forEach(o=>{o.visible=e>.02;o.scale.multiplyScalar(1)});U.anat.forEach(o=>{if(!o.userData.s0)o.userData.s0=o.scale.clone();o.scale.copy(o.userData.s0).multiplyScalar(.001+e)})}},
+  ()=>({k:'Plucking',t:'Tea garden, Upper Assam',p:'Pluckers move through the flat-topped bushes every seven days or so, taking the tender shoot: two leaves and a bud. Under shade trees in the humid Brahmaputra valley, the leaf is about 77% water. Inside each cell, catechins sit sealed in vacuoles, away from the oxidase enzyme in the plastids. Everything that follows is about bringing them together at the right moment.',
+  eq:[['M<sub>wb</sub> = m<sub>water</sub> / (m<sub>water</sub> + m<sub>solids</sub>)',`77% water: ${kg(PR.leaf)} of leaf carries ${kg(X.DM)} of solids`],['pluckers = daily leaf / plucking rate',`${fmt(PR.leaf*12)} kg in a 12-hour day ÷ 24 kg each ≈ ${f0(X.pluck)} pluckers`],['catechins ≈ 20% of dry matter','EGCG, EGC, ECG and EC: the raw material for colour, strength and briskness']]}),14);
+const wither=unit('Withering troughs',[-8.5,0,0],U=>{const pl=box(8,.75,1.8,M.dark);pl.position.y=.4;U.L(pl,[0,0,0],0,'air plenum');for(const x of[-3.8,3.8])for(const z of[-.8,.8]){const l=cyl(.05,.05,.1,M.dark,6);l.position.set(x,0,z);U.g.add(l)}
+  const msh=new THREE.Mesh(new THREE.PlaneGeometry(7.9,1.75,40,9),M.mesh);msh.rotation.x=-Math.PI/2;msh.position.y=.82;U.L(msh,[0,1,0],.9,'wire-mesh bed');
+  const bedG=new THREE.BoxGeometry(7.8,.28,1.7,40,1,8);{const p=bedG.attributes.position;for(let i=0;i<p.count;i++)if(p.getY(i)>0)p.setY(i,p.getY(i)+rnd(-.05,.06))}bedG.computeVertexNormals();
+  U.bedM=new THREE.MeshStandardMaterial({color:0x6aa040,roughness:.95});const bed=new THREE.Mesh(bedG,U.bedM);bed.position.y=1.0;U.L(bed,[0,1,0],1.7,'leaf bed, 25–30 kg/m²');
+  const fh=cyl(.65,.65,.5,M.green,24,true);fh.rotation.z=Math.PI/2;fh.position.set(-4.3,.55,0);U.L(fh,[-1,0,0],1.5,'axial fan');const bl=new THREE.Group();for(let i=0;i<5;i++){const b=box(.04,1,.18,M.steel);b.rotation.x=i*Math.PI*2/5;bl.add(b)}bl.position.set(-4.3,.55,0);U.L(bl,[-1,0,0],1.5,null);U.blades=bl},
+  ()=>({k:'Withering',t:'Withering troughs',p:'Leaf is spread on wire mesh over a plenum and air is blown up through it for 12 to 18 hours. It loses water and goes limp, so it will cut cleanly instead of shattering, while slow chemical changes build aroma precursors. Drier air, with a bigger gap between dry- and wet-bulb temperatures, withers faster.',
+  eq:[['Δm = m<sub>0</sub>(M<sub>0</sub> − M<sub>f</sub>) / (1 − M<sub>f</sub>)',`77% → ${f1(PR.Mf*100)}%: ${f0(X.wrem*1000)} g of water removed per kg of leaf, ${kg(X.W1)} in total`],
+  ['rate = hA(T<sub>db</sub> − T<sub>wb</sub>) / λ',`hygrometric difference ${f1(PR.hyg)} °C → about ${f1(X.tw)} h to wither`],['area = leaf × time / loading',`${f0(X.area)} m² of trough at 28 kg/m², about ${X.troughs} troughs of 30 × 1.8 m`]].concat(X.tw>18?[['monsoon fix',`${f1(X.tw)} h is too long: warm the air by a few degrees to widen the hygrometric difference`]]:[])}),11);
+const rotor=unit('Rotorvane',[-2.5,0,0],U=>{const st=box(2.6,.8,.9,M.dark);st.position.y=.4;U.g.add(st);
+  const pts=[];for(let i=0;i<=160;i++){const a=i/160*Math.PI*10;pts.push(new THREE.Vector3(-1.1+i/160*2.2,1.25+.3*Math.cos(a),.3*Math.sin(a)))}const scr=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),200,.045,8,false),M.steel);U.L(scr,[0,1,0],.6,'vane screw');
+  const sh=cyl(.06,.06,2.4,M.steel,10);sh.rotation.z=Math.PI/2;sh.position.y=1.25;U.L(sh,[0,1,0],.6,null);U.scr=[scr,sh];
+  const bar=cyl(.42,.42,2.3,M.inner,32,true);bar.rotation.z=Math.PI/2;bar.position.y=1.25;U.L(bar,[0,1,0],1.6,'barrel with resistor vanes');
+  const hop=cyl(.55,.2,.6,M.steel,24,true);hop.position.set(-.8,1.95,0);U.L(hop,[0,1,0],2.4,'feed hopper');const mot=box(.6,.6,.6,M.green);mot.position.set(-1.6,1.1,0);U.L(mot,[-1,0,0],1.1,'drive')},
+  ()=>({k:'Preconditioning',t:'Rotorvane',p:'A screw forces withered leaf through a barrel lined with resistor vanes. It twists, bruises and roughly cuts the leaf into an even mass, breaking the waxy cuticle and starting to rupture cells, so the CTC rollers receive a uniform feed.',
+  eq:[['throughput = withered leaf rate',`${kg(X.wl)} of withered leaf`],['work → heat','mechanical working warms the leaf by about 1 to 2 °C; it must stay below 35 °C to protect aroma']]}),7);
+function toothed(r,l){const g=new THREE.CylinderGeometry(r,r,l,96,1);const p=g.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i),a=Math.atan2(z,x),rr=Math.hypot(x,z);if(rr>r*.5){const k=1+.1*(Math.sin(a*24)>0?1:0);p.setX(i,x*k);p.setZ(i,z*k)}}g.computeVertexNormals();return g}
+const ctc=unit('CTC triplex',[1.5,0,0],U=>{const fr=box(3.4,.95,1.7,M.green);fr.position.y=.48;U.g.add(fr);U.rol=[];const tg=toothed(.22,1.3);
+  [-1.05,0,1.05].forEach((x,k)=>{const lo=new THREE.Mesh(tg,M.steel);lo.rotation.x=Math.PI/2;lo.position.set(x,1.25,0);U.L(lo,[0,0,0],0,k===0?'slow roller':null);const hi=new THREE.Mesh(tg,M.steel);hi.rotation.x=Math.PI/2;hi.position.set(x,1.72,0);U.L(hi,[0,1,0],.75+k*.1,k===0?'fast roller, ten times quicker':null);U.rol.push([lo,hi])});
+  const hood=box(3.4,.5,1.7,M.glassM);hood.position.y=2.15;U.L(hood,[0,1,0],1.9,'safety hood');const gb=box(3.2,.8,.4,M.dark);gb.position.set(0,1.3,1.05);U.L(gb,[0,0,1],1.5,'gearbox, differential drive');
+  U.cut=cloud(160,.2);U.cut.material.opacity=.9;U.g.add(U.cut);U.CP=Array.from({length:160},()=>({x:0,y:0,z:0,vx:0,vy:0,l:0}))},
+  ()=>({k:'Crush, tear, curl',t:'CTC triplex',p:'Three pairs of sharp-toothed rollers spin against each other, one ten times faster than its partner. The leaf is crushed, torn and curled into tiny granules, rupturing almost every cell so the catechins meet the oxidase. Oxidation begins the instant the leaf leaves the rollers.',
+  eq:[['v = πDN / 60',`fast ${f2(X.vf)} m/s at 700 rpm, slow ${f2(X.vs)} m/s at ${f0(X.Ns)} rpm: ${f1(PR.ratio)} : 1 shear`],['d₆₃ ≈ 1.05 (10/ratio)<sup>0.55</sup> mm',`characteristic particle size ${f2(X.d63)} mm after three cuts`],['heat of maceration',`the leaf warms by about ${f1(X.ctcRise)} °C, so cool, humid air matters`]]}),7);
+const cfm=unit('Continuous fermenting machine',[7.2,0,0],U=>{const fr=box(5.6,.7,1.4,M.dark);fr.position.y=.35;U.g.add(fr);const belt=box(5.5,.06,1.25,M.steel);belt.position.y=.75;U.L(belt,[0,0,0],0,'perforated conveyor');
+  U.dg=new THREE.BoxGeometry(5.3,.14,1.1,60,1,1);colorize(U.dg,()=>0);const dh=new THREE.Mesh(U.dg,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.95}));dh.position.y=.86;U.L(dh,[0,1,0],1.0,'dhool bed, 5–8 cm');
+  const hood=box(5.7,1.2,1.5,M.glassM);hood.position.y=1.55;U.L(hood,[0,1,0],2.0,'humidified chamber, 24–27 °C');const nb=new THREE.Group();const pipe=cyl(.04,.04,5.4,M.steel,8);pipe.rotation.z=Math.PI/2;nb.add(pipe);
+  for(let i=0;i<8;i++){const n=cyl(.02,.07,.12,M.steel,8);n.position.set(-2.5+i*.72,-.08,0);nb.add(n)}nb.position.y=2.0;U.L(nb,[0,1,0],2.6,'humidifier nozzles, RH > 90%')},
+  ()=>({k:'Oxidation',t:'Continuous fermenting machine',p:'The macerated leaf, called dhool, travels slowly through cool, humid, well-aired space. Polyphenol oxidase uses oxygen to turn colourless catechins into golden theaflavins, which give briskness and brightness, and those slowly into red-brown thearubigins, which give colour and body. Stop too early and the tea is green; too late and it turns dull.',
+  eq:[['catechins → TF → TR,  dC/dt = −k₁C,  dTF/dt = Yk₁C − k₂TF',`k₁ = ${fmt(X.k1,4)}, k₂ = ${fmt(X.k2,4)} per min at ${f1(PR.Tf)} °C`],['t* = ln(k₁/k₂) / (k₁ − k₂)',`theaflavins peak at ${f0(X.tstar)} min; you are at ${f0(PR.tf)} min`],
+  ['k(T) = k₂₅ · Q₁₀<sup>(T − 25)/10</sup>',`TF ${f2(X.F.TF)}% and TR ${f1(X.F.TR)}% of dry matter, ratio 1 : ${f1(X.F.TR/X.F.TF)}`]]}),9);
+const fbd=unit('Fluid bed dryer',[12.6,0,0],U=>{const pl=box(1.9,.8,1.9,M.dark);pl.position.y=.4;U.L(pl,[0,0,0],0,'hot-air plenum');const dp=box(1.8,.05,1.8,M.steel);dp.position.y=.85;U.L(dp,[0,1,0],.5,'perforated distributor plate');
+  const ch=box(1.8,2.6,1.8,M.inner);ch.position.y=2.2;U.L(ch,[0,1,0],2.6,'drying chamber');const ht=box(.8,1,.8,M.dark);ht.position.set(0,.6,1.5);U.L(ht,[0,0,1],1.4,'air heater');
+  const coil=new THREE.Mesh(new THREE.TorusKnotGeometry(.22,.04,60,8,2,5),new THREE.MeshStandardMaterial({color:0x331a10,emissive:0xff5a1a,emissiveIntensity:1}));coil.position.set(0,.6,1.95);U.L(coil,[0,0,1],1.4,null);U.coil=coil;
+  const cy=new THREE.Group();const c1=cyl(.35,.35,.7,M.steel,24);c1.position.y=.35;cy.add(c1);const c2=cyl(.35,.06,.8,M.steel,24);c2.position.y=-.4;cy.add(c2);cy.position.set(1.5,3.3,0);U.L(cy,[1,1,0],1.6,'cyclone for fines')},
+  ()=>({k:'Drying',t:'Fluid bed dryer',p:'Hot air rushes up through a perforated plate and lifts the granules so they boil like a liquid. Oxidation stops as the enzyme is destroyed, moisture falls from about 69% to around 3%, and the tea turns black. Too cool and it stays soft and spoils; too hot and it tastes burnt.',
+  eq:[['W = m<sub>s</sub>(X<sub>in</sub> − X<sub>out</sub>)',`${kg(X.Wd)} of water evaporated, final moisture ${f1(X.Mfin*100)}%`],['Q = Wλ / η',`about ${kW(X.Qd)} of heat at 60% efficiency; ${fmt(X.mair,1)} kg/s of air from ${f0(PR.Tin)} to ${f0(X.Tout)} °C`],['u<sub>mf</sub> = d²(ρ<sub>p</sub> − ρ<sub>g</sub>)g / 1650μ',`0.8 mm particles fluidise above ${f2(X.umf)} m/s`]]}),8);
+const sift=unit('Fibre extractor and sifter',[16.7,0,0],U=>{for(const x of[-.8,.8])for(const z of[-.6,.6]){const l=box(.08,1,.08,M.dark);l.position.set(x,.5,z);U.g.add(l)}
+  U.decks=[];['BOP deck','BP deck','PF deck','PD deck'].forEach((nm,k)=>{const d=new THREE.Group();const tray=box(1.9,.06,1.4,M.steel);d.add(tray);const m=new THREE.Mesh(new THREE.PlaneGeometry(1.8,1.3,18,13),M.mesh);m.rotation.x=-Math.PI/2;m.position.y=.04;d.add(m);d.position.y=1.9-k*.28;U.L(d,[0,1,0],.45*(4-k),nm);U.decks.push(d)});
+  const pan=box(1.9,.08,1.4,M.dark);pan.position.y=.95;U.L(pan,[0,0,0],0,'dust pan');const fr=new THREE.Group();for(const z of[-.3,.3]){const r=cyl(.13,.13,1.8,new THREE.MeshStandardMaterial({color:0x333a44,metalness:.4,roughness:.5}),20);r.rotation.z=Math.PI/2;r.position.z=z;fr.add(r)}fr.position.y=2.45;U.L(fr,[0,1,0],2.6,'electrostatic fibre rollers')},
+  ()=>({k:'Sorting and grading',t:'Fibre extractor and sifter',p:'Charged rollers pull out fibre and stalk, then vibrating screens split the tea by particle size into commercial grades. Larger grades brew more slowly; smaller ones colour the cup fast and suit tea bags.',
+  eq:[['R(d) = exp[−(d / d₆₃)<sup>n</sup>]',`Rosin–Rammler, d₆₃ = ${f2(X.d63)} mm, n = 2.4`],['grades',X.bins.map(b=>b[0]+' '+f0(b[1]*100)+'%').join(', ')],['fibre removed',`about 3.5% of made tea, ${kg(X.fibre)}`]]}),7);
+const pack=unit('Packing',[20.7,0,0],U=>{const plat=box(1.2,.5,1.2,M.dark);plat.position.y=.25;U.g.add(plat);const sack=cyl(.42,.4,1.1,M.sack,20);sack.position.y=1.05;U.L(sack,[0,0,1],1.4,'25 kg multiwall paper sack');
+  const wh=box(.8,.5,.8,M.green);wh.position.y=2.1;U.L(wh,[0,1,0],.8,'weighing head');const hp=cyl(.7,.2,1,M.steel,24,true);hp.position.y=2.9;U.L(hp,[0,1,0],1.5,'surge hopper');
+  for(let i=0;i<6;i++){const s=box(.9,.35,.6,M.sack);s.position.set(1.4,.2+Math.floor(i/2)*.36,-.35+(i%2)*.7);U.g.add(s)}},
+  ()=>({k:'Packing',t:'Packing',p:'Each grade is weighed into foil-lined multiwall paper sacks and sealed straight away, because made tea is hygroscopic and loses briskness as it picks up moisture. From here, Assam CTC heads for the Guwahati auction.',
+  eq:[['made tea = solids / (1 − M<sub>final</sub>)',`${kg(X.made)} of graded tea`],['leaf : tea',`${f2(X.ratioLT)} kg of green leaf for every kg of made tea`],['sacks per hour',`${f1(X.made/25)} sacks of 25 kg; keep stores below 65% relative humidity`]]}),7);
+
+/* ================= leaf path ================= */
+function fermEnd(){return .33+.3*clamp(PR.tf/110,0,1)*(PR.Tf>29?1.1:1)}
+function nodes(){const se=fermEnd();return[[-23,1.3,-2,0],[-15,.7,0,0],[-12.6,1.2,0,.02],[-4.5,1.2,0,.18],[-3.6,1.3,0,.2],[-1.4,1.3,0,.3],[.45,1.5,0,.32],[2.6,1.5,0,.34],[4.4,.98,0,.35],[10,.98,0,se],[12.6,1.2,0,se],[12.6,2.7,0,.84],[14.1,2.1,0,.88],[16.7,2.1,0,.92],[19.6,2.0,0,.97],[20.7,2.6,0,1]]}
+function mkPath(n){const L=[0];for(let i=1;i<n.length;i++)L.push(L[i-1]+Math.hypot(n[i][0]-n[i-1][0],n[i][1]-n[i-1][1],n[i][2]-n[i-1][2]));return{n,L,len:L[L.length-1]}}
+function at(p,s){s=clamp(s,0,p.len);let i=1;while(i<p.L.length-1&&p.L[i]<s)i++;const a=p.n[i-1],b=p.n[i],t=(s-p.L[i-1])/((p.L[i]-p.L[i-1])||1);return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t,a[3]+(b[3]-a[3])*t]}
+let PA=mkPath(nodes());
+const belts=[[-15,.6,0,-12.6,1.05,0],[-4.4,1.05,0,-3.8,1.1,0],[-1.2,1.1,0,.3,1.1,0],[2.7,1.0,0,4.3,.85,0],[10.1,.85,0,11.6,.95,0],[13.6,1.6,0,15.8,1.6,0],[17.7,1.5,0,20,1.6,0]];
+belts.forEach(b=>{const a=new THREE.Vector3(b[0],b[1],b[2]),c=new THREE.Vector3(b[3],b[4],b[5]),d=c.clone().sub(a),L=d.length();const m=box(L,.06,.55,M.dark);m.position.copy(a).add(c).multiplyScalar(.5);m.rotation.z=Math.atan2(d.y,d.x);m.receiveShadow=true;S.sc.add(m)});
+const NL=700,leaf=cloud(NL,.24),halo=cloud(NL,.75);halo.material.opacity=.28;S.sc.add(halo,leaf);const LP=Array.from({length:NL},()=>({s:Math.random()*PA.len,j:[rnd(-.18,.18),rnd(-.05,.12),rnd(-.22,.22)]}));
+const air=cloud(220,.45);air.material.opacity=.55;S.sc.add(air);const AP=Array.from({length:220},()=>({x:rnd(-12.4,-4.6),y:rnd(.15,.7),z:rnd(-.8,.8),up:Math.random()<.4}));
+const mist=cloud(140,.5);mist.material.opacity=.45;S.sc.add(mist);const MP=Array.from({length:140},()=>({x:rnd(4.6,9.8),y:rnd(1,2),z:rnd(-.6,.6)}));
+const bed=cloud(240,.3);S.sc.add(bed);const BP=Array.from({length:240},()=>({x:rnd(-.8,.8),y:rnd(.95,2.2),z:rnd(-.8,.8),v:rnd(-1,1)}));
+const hot=cloud(120,.5);hot.material.opacity=.5;S.sc.add(hot);const HP=Array.from({length:120},()=>({x:rnd(-.8,.8),y:rnd(.2,3.4),z:rnd(-.8,.8)}));
+const fog=cloud(180,1.6);fog.material.opacity=.22;S.sc.add(fog);const FP=Array.from({length:180},()=>({x:rnd(-28,-14),y:rnd(.6,3),z:rnd(-7,7),v:rnd(.1,.3)}));
+const ring=new THREE.Mesh(new THREE.RingGeometry(1,1.12,72),new THREE.MeshBasicMaterial({color:0xD98A3A,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false}));ring.rotation.x=-Math.PI/2;ring.position.y=.03;S.sc.add(ring);const ring2=ring.clone();ring2.material=ring.material.clone();S.sc.add(ring2);
+S.sc.traverse(o=>{if(o.isMesh&&o!==floor&&o!==field&&o.material&&!o.material.transparent&&!o.material.wireframe){o.castShadow=true;o.receiveShadow=true}});
+/* ================= interaction ================= */
+let hov=null,sel=null,xall=false,tour=false,tourT=0,tourI=0;const ray=new THREE.Raycaster(),nd=new THREE.Vector2();let dn=null;
+const pick=e=>{const r=S.cv.getBoundingClientRect();nd.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(nd,S.cm);const h=ray.intersectObjects(hits)[0];return h?h.object.userData.u:null};
+S.cv.addEventListener('pointermove',e=>{hov=pick(e)});S.cv.addEventListener('pointerleave',()=>{hov=null});S.cv.addEventListener('pointerdown',e=>{dn=[e.clientX,e.clientY]});
+S.cv.addEventListener('pointerup',e=>{if(!dn)return;const mv=Math.hypot(e.clientX-dn[0],e.clientY-dn[1]);dn=null;if(mv<6){const u=pick(e);sel=(u&&u!==sel)?u:null;setTour(false);renderInfo(true)}});
+function setTour(v){tour=v;$('tour').setAttribute('aria-pressed',v);$('tour').textContent=v?'Stop the tour':'Guided tour';if(v){tourI=0;tourT=0;sel=units[0]}}
+$('tour').onclick=()=>setTour(!tour);$('home').onclick=()=>{sel=null;setTour(false);renderInfo(true)};
+const xb=$('xall');xb.onclick=()=>{xall=!xall;xb.setAttribute('aria-pressed',xall);xb.textContent=xall?'Reassemble':'Explode everything'};
+/* ================= controls ================= */
+const DEF={lf:3000,wm:69,hy:3,ro:10,ft:65,fT:25,di:125};
+function readCtl(){PR.leaf=+$('lf').value;PR.Mf=+$('wm').value/100;PR.hyg=+$('hy').value;PR.ratio=+$('ro').value;PR.tf=+$('ft').value;PR.Tf=+$('fT').value;PR.Tin=+$('di').value;solve();PA=mkPath(nodes());
+  $('lfOut').textContent=fmt(PR.leaf)+' kg/h';$('wmOut').textContent=f1(PR.Mf*100)+'%';$('hyOut').textContent=f1(PR.hyg)+' °C';$('roOut').textContent=f1(PR.ratio)+' : 1';$('ftOut').textContent=f0(PR.tf)+' min';$('fTOut').textContent=f1(PR.Tf)+' °C';$('diOut').textContent=f0(PR.Tin)+' °C';
+  kpis();paintStatic();drawCharts();renderInfo(true)}
+['lf','wm','hy','ro','ft','fT','di'].forEach(id=>$(id).oninput=readCtl);
+const setv=o=>{for(const k in DEF)$(k).value=(k in o)?o[k]:DEF[k];readCtl()};$('sMon').onclick=()=>setv({hy:1});$('sOver').onclick=()=>setv({ft:125,fT:30});$('sUnder').onclick=()=>setv({di:100});$('sReset').onclick=()=>setv({});
+function kpis(){$('kL').textContent=fmt(PR.leaf)+' kg/h';$('kM').textContent=fmt(X.made)+' kg/h';$('kR').textContent=f2(X.ratioLT);$('kW').textContent=f1(X.tw)+' h';$('kT').textContent='1 : '+f1(X.F.TR/X.F.TF);$('kF').textContent=f1(X.Mfin*100)+'%';
+  const q=$('kQ');q.textContent=X.verdict;q.className=(X.state==='best'||X.state==='ok')?'fwd':'div'}
+function paintStatic(){leafCol(.06+.12*clamp((.77-PR.Mf)/.09,0,1.4),_c);wither.layers.forEach(l=>{if(l.nm&&l.nm.startsWith('leaf bed'))l.obj.material.color.copy(_c)});
+  const se=fermEnd();const p=cfm.dg.attributes.position,c=cfm.dg.attributes.color;for(let i=0;i<p.count;i++){const u=(p.getX(i)+2.65)/5.3;leafCol(.33+(se-.33)*u,_c);c.setXYZ(i,_c.r,_c.g,_c.b)}c.needsUpdate=true;
+  fbd.coil.material.emissiveIntensity=.4+(PR.Tin-95)/55}
+function overview(){return{k:'Whole factory',t:'An Assam CTC tea factory',p:'Fresh shoots from the garden are withered for half a day, preconditioned, cut three times between toothed rollers, oxidised for about an hour, fluid-bed dried, cleaned of fibre, graded by size and sacked. Hover over any stage to open it up.',
+  eq:[['mass balance on solids',`${kg(PR.leaf)} of leaf at 77% water → ${kg(X.made)} of tea at ${f1(X.Mfin*100)}%`],['water removed',`${kg(X.W1)} in withering + ${kg(X.Wd)} in the dryer`],['quality',`TF ${f2(X.F.TF)}%, TR ${f1(X.F.TR)}%: ${X.verdict.toLowerCase()} liquor, mostly ${X.top[0]} grade`]]}}
+let lastHTML='';
+function renderInfo(force){const U=sel||hov;const d=U?U.info():overview();const lays=U?U.layers.filter(l=>l.nm).map(l=>l.nm):[];
+  const html=`<p class="k">${d.k}${sel?' · locked':''}</p><h3>${d.t}</h3><p>${d.p}</p>${d.eq.map(([a,b])=>`<div class="eq"><span class="law">${a}</span><span class="live">${b}</span></div>`).join('')}${extraHTML(U)}${lays.length?`<p class="k" style="margin-top:1rem">Layers you can see</p><div class="lay">${lays.map(l=>`<span>${l}</span>`).join('')}</div>`:''}<p class="hint">${sel?'Click empty space or Overview to release.':U?'Click to lock this stage and fly in.':'Hover over a stage to explode it.'}</p>`;
+  if(force||html!==lastHTML){const key=(U?U.name:'all')+(sel?'L':'');const ch=key!==renderInfo.k;renderInfo.k=key;$('info').innerHTML=`<div class="${ch?'swap':''}">${html}</div>`;lastHTML=html}}
+function drawCharts(){{const[x,w,h]=chart('uK');const L=46,R=46,T=26,B=34,fx=t=>L+t/140*(w-L-R),fl=v=>h-B-v/20*(h-T-B),fr=v=>h-B-v/1.6*(h-T-B);x.font='12px "Schibsted Grotesk",sans-serif';
+    for(const v of[0,5,10,15,20]){x.strokeStyle='#262A33';x.beginPath();x.moveTo(L,fl(v));x.lineTo(w-R,fl(v));x.stroke();x.fillStyle='#9AA1AC';x.textAlign='right';x.fillText(v+'%',L-6,fl(v)+4)}
+    x.textAlign='left';x.fillStyle='#E8C25A';for(const v of[0,.4,.8,1.2,1.6])x.fillText(v.toFixed(1)+'%',w-R+6,fr(v)+4);x.fillStyle='#9AA1AC';x.textAlign='center';for(const t of[0,30,60,90,120])x.fillText(t+' min',fx(t),h-B+16);
+    const ln=(f,col,wd,fy)=>{x.strokeStyle=col;x.lineWidth=wd;x.beginPath();for(let t=0;t<=140;t+=2){const v=f(t),X2=fx(t),Y=fy(v);t?x.lineTo(X2,Y):x.moveTo(X2,Y)}x.stroke()};
+    ln(t=>ferm(t,PR.Tf).C,'#6FB443',2.5,fl);ln(t=>ferm(t,PR.Tf).TR,'#B8742F',2.5,fl);ln(t=>ferm(t,PR.Tf).TF,'#E8C25A',3,fr);
+    x.setLineDash([4,4]);x.strokeStyle='#9AA1AC';x.beginPath();x.moveTo(fx(X.tstar),T);x.lineTo(fx(X.tstar),h-B);x.stroke();x.setLineDash([]);x.strokeStyle='#E9E6E0';x.lineWidth=2;x.beginPath();x.moveTo(fx(PR.tf),T);x.lineTo(fx(PR.tf),h-B);x.stroke();
+    x.fillStyle='#E9E6E0';x.textAlign='left';x.fillText('now',fx(PR.tf)+4,T+10);x.fillStyle='#9AA1AC';x.fillText('TF peak',fx(X.tstar)+4,T+24);x.fillStyle='#6FB443';x.fillText('catechins',L+6,fl(18.5));x.fillStyle='#B8742F';x.fillText('thearubigins',fx(110),fl(ferm(110,PR.Tf).TR)-8);x.fillStyle='#E8C25A';x.fillText('theaflavins',fx(X.tstar)+6,fr(X.Fpk.TF)-8);
+    x.fillStyle='#C9CED6';x.fillText('Oxidation kinetics at '+f1(PR.Tf)+' °C',L,14)}
+  {const[x,w,h]=chart('uM');const st=[['fresh leaf',77],['withered',PR.Mf*100],['CTC dhool',PR.Mf*100],['oxidised',PR.Mf*100-.5],['dried',X.Mfin*100],['packed',X.Mfin*100]];const L=40,R=16,T=26,B=34,fx=i=>L+i/(st.length-1)*(w-L-R),fy=v=>h-B-v/80*(h-T-B);x.font='12px "Schibsted Grotesk",sans-serif';
+    for(const v of[0,20,40,60,80]){x.strokeStyle='#262A33';x.beginPath();x.moveTo(L,fy(v));x.lineTo(w-R,fy(v));x.stroke();x.fillStyle='#9AA1AC';x.textAlign='right';x.fillText(v+'%',L-6,fy(v)+4)}
+    x.lineWidth=3;st.forEach((s,i)=>{if(i){x.strokeStyle=leafCol(i/(st.length-1),_c).getStyle();x.beginPath();x.moveTo(fx(i-1),fy(st[i-1][1]));x.lineTo(fx(i),fy(s[1]));x.stroke()}});
+    st.forEach(([n,v],i)=>{x.fillStyle=leafCol(i/(st.length-1),_c).getStyle();x.beginPath();x.arc(fx(i),fy(v),5,0,7);x.fill();x.fillStyle='#E9E6E0';x.textAlign='center';x.fillText(f1(v)+'%',fx(i),fy(v)-10);x.fillStyle='#C9CED6';x.fillText(n,fx(i),h-B+16)});x.textAlign='left';x.fillText('Moisture, wet basis',L,14)}
+  {const[x,w,h]=chart('uG');const L=16,T=30,B=30,bw=(w-2*L)/X.bins.length;x.font='12px "Schibsted Grotesk",sans-serif';x.fillStyle='#C9CED6';x.textAlign='left';x.fillText('Grade distribution after sifting (d₆₃ = '+f2(X.d63)+' mm)',L,16);
+    X.bins.forEach(([n,f],i)=>{const bh=f*(h-T-B)/.6;x.fillStyle=leafCol(.82+i*.04,_c).getStyle();x.fillRect(L+i*bw+8,h-B-bh,bw-16,bh);x.fillStyle='#E9E6E0';x.textAlign='center';x.fillText(f0(f*100)+'%',L+i*bw+bw/2,h-B-bh-6);x.fillStyle='#C9CED6';x.fillText(n,L+i*bw+bw/2,h-B+16)})}}
+window.addEventListener('resize',drawCharts);
+/* ================= animate ================= */
+const OV={tg:new THREE.Vector3(-2,1.5,0),d:44};let tt=0,infoT=0;S.dist=85;S.pitch=1.05;S.yaw=-.3;let intro=reduce?0:1;if(reduce){S.dist=44;S.pitch=.48;S.yaw=.5}
+S.update=dt=>{tt+=dt;CLK=tt;
+  if(intro>0){intro=Math.max(0,intro-dt/4.5);const k=1-Math.pow(intro,3);S.pitch=1.05+(.48-1.05)*k;S.yaw=-.3+(.5+.3)*k;S.idle=0;S.auto=false}
+  if(tour){tourT+=dt;if(tourT>8){tourT=0;tourI=(tourI+1)%units.length;sel=units[tourI]}}
+  const tg=sel?sel.center:OV.tg,dd=sel?sel.focus:OV.d;S.tg.lerp(tg,Math.min(1,dt*2));S.dist+=(dd-S.dist)*Math.min(1,dt*2);if(sel){S.idle=0;S.auto=false}
+  for(const U of units){U.te=(xall||U===sel||U===hov)?1:0;U.e+=(U.te-U.e)*Math.min(1,dt*3.5);applyExplode(U);let up=0;for(const l of U.layers)up=Math.max(up,l.dir.y*l.dist);U.lbl.pos.set(U.top.x,U.top.y+U.e*U.e*up,U.top.z)}
+  const focusU=sel||hov;for(const U of units)U.lbl.dim=!!focusU&&U!==focusU;
+  if(focusU){ring.position.x=focusU.center.x;ring.position.z=focusU.center.z;const s=1.4+focusU.focus*.2;ring.scale.setScalar(s+.08*Math.sin(tt*3));ring.material.opacity+=(.75-ring.material.opacity)*Math.min(1,dt*4);const ph=(tt*.6)%1;ring2.position.copy(ring.position);ring2.scale.setScalar(s*(1+ph*.8));ring2.material.opacity=(1-ph)*.45;
+    spot.target.position.copy(focusU.center);spot.position.set(focusU.center.x+2,focusU.center.y+12,focusU.center.z+3);spot.intensity+=(2.2-spot.intensity)*Math.min(1,dt*3)}
+  else{ring.material.opacity*=Math.pow(.02,dt);ring2.material.opacity*=Math.pow(.02,dt);spot.intensity*=Math.pow(.05,dt)}
+  sweep.position.set(Math.sin(tt*.16)*22,6,5+Math.cos(tt*.12)*5);
+  garden.pl.forEach((p,i)=>{p.position.y=Math.abs(Math.sin(tt*1.6+i))*.06;p.rotation.y=Math.sin(tt*.4+i)*.6});wither.blades.rotation.x+=dt*14;rotor.scr.forEach(o=>o.rotation.x+=dt*3);
+  ctc.rol.forEach(([lo,hi])=>{lo.rotation.y+=dt*.8;hi.rotation.y-=dt*.8*PR.ratio});sift.decks.forEach((d,k)=>{d.position.x=d.userData.base.x+Math.sin(tt*28+k)*.025});fbd.coil.rotation.y+=dt;
+  for(let i=0;i<ctc.CP.length;i++){const p=ctc.CP[i];p.l-=dt*1.5;if(p.l<=0){const k=Math.floor(Math.random()*3);p.x=-1.05+k*1.05;p.y=1.48;p.z=rnd(-.6,.6);p.vx=rnd(-.6,.6);p.vy=rnd(.2,1.2);p.l=1}p.vy-=dt*2;p.x+=p.vx*dt;p.y+=p.vy*dt;leafCol(.33,_c);setPtC(ctc.cut,i,p.x,p.y,p.z,_c,p.l*.9)}flush(ctc.cut);
+  const v=1.5*PR.leaf/3000;
+  for(let i=0;i<NL;i++){const q=LP[i];q.s+=v*dt;if(q.s>PA.len)q.s-=PA.len;const pt=at(PA,q.s);let y=pt[1]+q.j[1],x=pt[0]+q.j[0],z=pt[2]+q.j[2];if(pt[0]>11.8&&pt[0]<13.4&&pt[1]>1.1){y+=Math.abs(Math.sin(tt*6+i))*.35;x+=Math.sin(i)*.5;z+=Math.cos(i*1.3)*.5}
+    leafCol(pt[3],_c);const pulse=.6+.4*Math.pow(.5+.5*Math.sin(q.s*1.4-tt*4),3);setPtC(leaf,i,x,y,z,_c,.75+.4*pulse);setPtC(halo,i,x,y,z,_c,.4*pulse)}flush(leaf);flush(halo);
+  const wE=units[1].e;for(let i=0;i<AP.length;i++){const p=AP[i];if(p.up){p.y+=dt*.9;if(p.y>1.9){p.y=.2;p.x=rnd(-12.4,-4.6)}}else{p.x+=dt*3;if(p.x>-4.6)p.x=-12.4}setPt(air,i,p.x,p.y+(p.up?wE*.9*clamp((p.y-.8),0,1):0),p.z,.38,(.15+.5*wE)*(p.up?.8:1))}flush(air);
+  for(let i=0;i<MP.length;i++){const p=MP[i];p.y-=dt*.25;p.x+=Math.sin(tt+i)*dt*.1;if(p.y<.95){p.y=2;p.x=rnd(4.6,9.8)}setPt(mist,i,p.x,p.y+cfm.e*1.2,p.z,.4,.25)}flush(mist);
+  const fx0=12.6,fe=fbd.e*2.6;for(let i=0;i<BP.length;i++){const p=BP[i];p.v-=dt*6;p.y+=p.v*dt;if(p.y<.95){p.y=.95;p.v=rnd(2.5,4.5)}leafCol(.86,_c);setPtC(bed,i,fx0+p.x,p.y,p.z,_c,.85)}flush(bed);
+  for(let i=0;i<HP.length;i++){const p=HP[i];p.y+=dt*2.2;if(p.y>3.6){p.y=.2;p.x=rnd(-.8,.8);p.z=rnd(-.8,.8)}setPt(hot,i,fx0+p.x,p.y,p.z,.62+.3*clamp((PR.Tin-95)/55,0,1),.25)}flush(hot);
+  for(let i=0;i<FP.length;i++){const p=FP[i];p.x+=p.v*dt;if(p.x>-14)p.x=-28;setPt(fog,i,p.x,p.y+Math.sin(tt*.3+i)*.2,p.z,.45,.18)}flush(fog);
+  infoT+=dt;if(infoT>.35){infoT=0;renderInfo(false)}};
+
+/* ================= study notes ================= */
+const EXTRA={
+'Tea garden, Upper Assam':{tbl:[['Plucking standard','2 leaves + bud','fine leaf above 70% gives brisk, bright tea'],['Plucking round','7–10 days','keeps shoots young and tender'],['Leaf moisture','75–80%','sets how much water the wither must remove'],['Leaf to factory','within 4 h, ≤ 35 °C','tight, hot bags start damage and red leaf']],
+  faults:['Coarse plucking (three or more leaves) adds fibre and gives a dull, thin liquor','Packing leaf tightly in bags heats it and starts uncontrolled oxidation'],exam:['Why is the bud the most valuable part of the shoot?','It has the highest catechin and caffeine content, so it yields the brightest, brisk liquor.']},
+'Withering troughs':{tbl:[['Duration','12–18 h','long enough for chemical wither'],['Target moisture (CTC)','66–70%','leaf cuts cleanly instead of shattering'],['Hygrometric difference','2–4 °C','the drying power of the air'],['Air temperature','≤ 35 °C','hotter air damages aroma'],['Leaf loading','25–30 kg/m²','even airflow through the bed']],
+  faults:['Over-wither: leaf too dry, poor maceration, flaky and dusty tea','Under-wither: leaf shatters in the CTC and loses juice, giving weak liquor','Uneven spreading leaves wet patches and dry patches'],exam:['What is the difference between physical and chemical wither?','Physical wither is water loss and limpness. Chemical wither is the breakdown of proteins into amino acids, a rise in aroma precursors and more permeable cell membranes.']},
+'Rotorvane':{tbl:[['Purpose','uniform feed','evens out the leaf before the CTC'],['Leaf temperature rise','1–2 °C','mechanical work becomes heat'],['Resistor vanes','adjustable','set how hard the leaf is worked']],
+  faults:['Overloading chokes the barrel and overheats the leaf','Worn vanes give an uneven, lumpy feed'],exam:['Why precondition leaf before CTC cutting?','It breaks the waxy cuticle and forms an even mass, so the rollers cut uniformly and rupture more cells.']},
+'CTC triplex':{tbl:[['Roller speed ratio','about 10 : 1','e.g. 700 and 70 rpm'],['Number of cuts','3 (triplex) or 4','more cuts, finer particles'],['Roller gap','a few hundredths of a mm','set by feeler gauge'],['Dhool temperature','below 35 °C','protects aroma and enzyme activity']],
+  faults:['Blunt rollers mash instead of cut, giving soggy, poor dhool','Overheated dhool loses aroma and turns dull','Too fine a cut raises the share of dust grades'],exam:['What does CTC stand for, and why rupture so many cells?','Crush, Tear, Curl. Breaking nearly every cell mixes catechins with polyphenol oxidase for fast, even oxidation and a strong, coloury liquor.']},
+'Continuous fermenting machine':{tbl:[['Time (from CTC)','60–90 min','until theaflavins peak'],['Room temperature','24–27 °C','cooler favours theaflavins'],['Relative humidity','above 90%','stops the dhool drying out'],['Bed depth','5–8 cm, aerated','oxidation needs oxygen'],['Theaflavins / thearubigins','1–1.5% / 10–16%','typical good CTC, dry basis']],
+  faults:['Under-fermented: green, raw, harsh liquor','Over-fermented: dull, soft, flat liquor with a dark infusion','Poor aeration: sour, uneven colour'],exam:['Which pigments give briskness and which give colour?','Theaflavins (golden) give briskness and brightness; thearubigins (red-brown) give colour and body.']},
+'Fluid bed dryer':{tbl:[['Inlet air','120–130 °C','fast enzyme kill without scorching'],['Exhaust air','80–95 °C','shows how much water is still coming off'],['Residence time','about 20 min','in the fluidised bed'],['Final moisture','2.5–3.5%','good keeping quality'],['Air velocity','above u<sub>mf</sub>','keeps particles suspended and mixing']],
+  faults:['Under-fired: soft tea that moulds in storage','Over-fired: burnt, high-fired taste','Case hardening: dry outside, wet inside'],exam:['What two jobs does drying do?','It stops oxidation by inactivating the enzymes, and lowers moisture to about 3% so the tea keeps.']},
+'Fibre extractor and sifter':{tbl:[['Main grades','BOP, BP, PF, PD, Dust','largest to smallest'],['Fibre removal','electrostatic rollers','charged rollers pick up stalk'],['Screens','finer down the stack','each deck catches one grade']],
+  faults:['Torn meshes mix grades and lower auction prices','Fibre left in spoils the look of the tea'],exam:['Why are fannings and dust used in tea bags?','Small particles infuse quickly and give strong colour in a short brew.']},
+'Packing':{tbl:[['Moisture at packing','3–4%','tea is hygroscopic'],['Sack','25 kg, foil-lined paper','moisture and light barrier'],['Store humidity','below 65% RH','prevents moisture pickup'],['Leaf to tea','4.2–4.5 kg per kg','the factory’s yield check']],
+  faults:['Moisture pickup makes tea lose briskness and risks mould','Mixing grades in one sack lowers the price at auction'],exam:['Roughly how much green leaf makes 1 kg of made tea?','About 4.2 to 4.5 kg, because fresh leaf is over three-quarters water.']}};
+function extraHTML(U){if(!U||!EXTRA[U.name])return'';const x=EXTRA[U.name];
+  return`<h4>Key parameters</h4><table>${x.tbl.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</table><h4>What goes wrong</h4><ul>${x.faults.map(f=>`<li>${f}</li>`).join('')}</ul><h4>Exam corner</h4><details><summary>${x.exam[0]}</summary><p>${x.exam[1]}</p></details>`}
+/* stepper */
+const STC=[0,.15,.27,.33,.56,.86,.93,1];const sb=$('steps');
+units.forEach((U,i)=>{const b=document.createElement('button');leafCol(STC[i],_c);b.style.setProperty('--c','#'+_c.getHexString());b.innerHTML=`<i>${i+1}</i>${U.name.replace(', Upper Assam','').replace('Continuous fermenting machine','Fermenting').replace('Fibre extractor and sifter','Sorting')}`;
+  b.onclick=()=>{sel=sel===U?null:U;setTour(false);renderInfo(true)};sb.appendChild(b);U.step=b});
+/* quiz and glossary */
+const QZ=[['What is the usual plucking standard for quality Assam CTC?',['One leaf only','Two leaves and a bud','Four leaves and a stalk'],1,'Two leaves and a bud: young, catechin-rich tissue.'],
+ ['Withering a CTC leaf mainly aims to…',['Make it limp so it cuts cleanly','Kill the enzymes','Raise it above 50 °C'],0,'Limp leaf cuts cleanly; enzymes must survive for oxidation.'],
+ ['In a CTC machine, the paired rollers run at…',['The same speed','About 10 : 1 different speeds','Opposite directions at 1 rpm'],1,'The speed difference shears and tears the leaf.'],
+ ['Which pigment peaks first during oxidation?',['Thearubigins','Chlorophyll','Theaflavins'],2,'Theaflavins form first, then slowly convert into thearubigins.'],
+ ['Raising fermentation temperature from 25 to 30 °C tends to…',['Raise the theaflavin peak','Lower the theaflavin peak and speed up thearubigins','Have no effect'],1,'k₂ rises faster than k₁, so theaflavins are destroyed sooner.'],
+ ['Final moisture of well-dried CTC tea is about…',['3%','12%','30%'],0,'Around 2.5 to 3.5% for good keeping quality.']];
+let score=0,done=0;const qz=$('quiz');const upd=()=>{$('qs').textContent=done?`${score} of ${done} correct`:`${QZ.length} questions`};upd();
+QZ.forEach(([q,opts,ans,why])=>{const d=document.createElement('div');d.className='q';d.innerHTML=`<p>${q}</p><div class="opts"></div><p class="fb"></p>`;const o=d.querySelector('.opts'),fb=d.querySelector('.fb');let answered=false;
+  opts.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{if(answered)return;answered=true;done++;if(i===ans){score++;b.classList.add('right');fb.textContent='Correct. '+why}else{b.classList.add('wrong');o.children[ans].classList.add('right');fb.textContent='Not quite. '+why}upd()};o.appendChild(b)});qz.appendChild(d)});
+const GL=[['Dhool','The moist, macerated leaf coming off the CTC rollers, as it oxidises.'],['Catechins','Colourless polyphenols in fresh leaf, the raw material for tea’s colour and strength.'],['Polyphenol oxidase (PPO)','The enzyme that uses oxygen to oxidise catechins once cells are broken.'],['Theaflavins (TF)','Golden-orange pigments that give briskness and brightness.'],['Thearubigins (TR)','Red-brown pigments that give colour, body and thickness.'],['Hygrometric difference','Dry-bulb minus wet-bulb temperature of air: a measure of its drying power.'],['Wet basis moisture','Water as a percentage of the total mass of leaf.'],['BOP, BP, PF, PD','Broken Orange Pekoe, Broken Pekoe, Pekoe Fannings and Pekoe Dust: CTC grades from largest to smallest.'],['Fluidisation','Air flowing up through particles fast enough to lift them so they behave like a boiling liquid.']];
+$('gloss').innerHTML=GL.map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join('');
+/* ================= atmosphere ================= */
+S.sc.fog.color.set(0x1d1a18);S.sc.fog.density=.0095;
+{const g=new THREE.SphereGeometry(170,40,20);const p=g.attributes.position,c=new THREE.BufferAttribute(new Float32Array(p.count*3),3);const st=[[-.2,'#14161a'],[0,'#3b2a26'],[.04,'#c98a55'],[.14,'#5a4060'],[.45,'#1d2140'],[1,'#0c0f1f']].map(([v,h])=>[v,new THREE.Color(h)]);
+  for(let i=0;i<p.count;i++){const y=p.getY(i)/170;let k=1;while(k<st.length-1&&st[k][0]<y)k++;const f=clamp((y-st[k-1][0])/(st[k][0]-st[k-1][0]),0,1);_c.copy(st[k-1][1]).lerp(st[k][1],f);c.setXYZ(i,_c.r,_c.g,_c.b)}g.setAttribute('color',c);
+  const sky=new THREE.Mesh(g,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.BackSide,fog:false,depthWrite:false}));S.sc.add(sky)}
+const gtex=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');const gr=g.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.3,'rgba(255,255,255,.45)');gr.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)})();
+const sun=new THREE.Sprite(new THREE.SpriteMaterial({map:gtex,color:0xffb36b,transparent:true,blending:THREE.AdditiveBlending,fog:false,depthWrite:false}));sun.position.set(-70,10,-140);sun.scale.set(60,60,1);S.sc.add(sun);
+const sunCore=sun.clone();sunCore.material=sun.material.clone();sunCore.material.color.set(0xfff0d0);sunCore.scale.set(12,12,1);S.sc.add(sunCore);
+const river=new THREE.Mesh(new THREE.PlaneGeometry(260,9),new THREE.MeshStandardMaterial({color:0x2a4352,metalness:.7,roughness:.18}));river.rotation.x=-Math.PI/2;river.position.set(0,.02,-20);S.sc.add(river);
+label(S,'Brahmaputra',[-40,.6,-20]);
+const spark=cloud(160,.35);S.sc.add(spark);const SPK=Array.from({length:160},()=>({x:rnd(-80,60),z:rnd(-24,-16),ph:rnd(0,6.28)}));
+const birds=[];for(let i=0;i<6;i++){const l=line([[-.35,.12,0],[0,0,0],[.35,.12,0]],0x1a1a1a,.9);l.position.set(-30+rnd(-6,6),9+rnd(-1,2),-6+rnd(-6,6));S.sc.add(l);birds.push({l,v:rnd(1.2,2),ph:rnd(0,6.28)})}
+const shaftT=(()=>{const c=document.createElement('canvas');c.width=8;c.height=256;const g=c.getContext('2d');const gr=g.createLinearGradient(0,0,0,256);gr.addColorStop(0,'rgba(255,220,170,.9)');gr.addColorStop(1,'rgba(255,220,170,0)');g.fillStyle=gr;g.fillRect(0,0,8,256);return new THREE.CanvasTexture(c)})();
+const shafts=[-6,2,9,16].map((x,i)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(2.2,7.5),new THREE.MeshBasicMaterial({map:shaftT,transparent:true,opacity:.12,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide,fog:false}));m.position.set(x+1.2,3.6,-.5);m.rotation.z=.32;m.rotation.y=.2;S.sc.add(m);return m});
+const dust=cloud(260,.12);S.sc.add(dust);const DP=Array.from({length:260},()=>({x:rnd(-12,23),y:rnd(.5,6.5),z:rnd(-5,5),v:rnd(.03,.12)}));
+const glows=units.map((U,i)=>{const m=new THREE.Mesh(new THREE.CircleGeometry(1,40),new THREE.MeshBasicMaterial({map:gtex,transparent:true,opacity:.28,blending:THREE.AdditiveBlending,depthWrite:false}));m.rotation.x=-Math.PI/2;leafCol(STC[i],_c);m.material.color.copy(_c);
+  const sz=i===0?7:i===1?5:2.6;m.scale.setScalar(sz);m.position.set(U.center.x,.04,U.center.z);S.sc.add(m);return m});
+/* molecule above the fermenting machine */
+{const mol=new THREE.Group();const atomG=new THREE.SphereGeometry(.09,12,8);const mats=[];const ring=(cx,cy,r,rot)=>{const pts=[];for(let k=0;k<=6;k++){const a=k/6*Math.PI*2+rot;pts.push([cx+r*Math.cos(a),cy+r*Math.sin(a),0])}
+    const ln=line(pts,0xE8C25A,.95);mol.add(ln);mats.push(ln.material);pts.slice(0,6).forEach(p=>{const m=new THREE.Mesh(atomG,new THREE.MeshStandardMaterial({color:0xE8C25A,emissive:0x553300,emissiveIntensity:.6}));m.position.set(...p);mol.add(m);mats.push(m.material)})};
+  ring(-.75,0,.4,0);ring(0,0,.4,0);ring(.75,.45,.4,Math.PI/6);ring(1.45,.05,.4,0);
+  mol.position.set(0,3.4,0);cfm.L(mol,[0,1,0],1.6,'catechin to theaflavin, schematic');cfm.mol=mol;cfm.molM=mats;mol.scale.setScalar(.001)}
+const baseFx=cfm.fx;cfm.fx=e=>{if(baseFx)baseFx(e);cfm.mol.scale.setScalar(.001+e*1.15);cfm.mol.visible=e>.02};
+const baseUpdate=S.update;
+S.update=dt=>{baseUpdate(dt);const t=CLK;
+  const focusU=sel||hov;units.forEach((U,i)=>{U.step.classList.toggle('on',U===focusU);glows[i].material.opacity=.22+(U===focusU?.3+.1*Math.sin(t*3):0)});
+  sunCore.material.opacity=.9+.1*Math.sin(t*.5);
+  for(let i=0;i<SPK.length;i++){const p=SPK[i];setPt(spark,i,p.x,.06,p.z,.62,Math.max(0,Math.sin(t*2+p.ph))*.5)}flush(spark);
+  birds.forEach(b=>{b.l.position.x+=b.v*dt;if(b.l.position.x>-10)b.l.position.x=-40;b.l.scale.y=1+.6*Math.sin(t*8+b.ph);b.l.position.y+=Math.sin(t+b.ph)*.003});
+  shafts.forEach((m,i)=>m.material.opacity=.08+.05*Math.sin(t*.4+i*1.7));
+  for(let i=0;i<DP.length;i++){const p=DP[i];p.y+=p.v*dt;p.x+=Math.sin(t*.2+i)*dt*.05;if(p.y>6.8)p.y=.5;setPt(dust,i,p.x,p.y,p.z,.62,.22+.12*Math.sin(t+i))}flush(dust);
+  if(cfm.mol.visible){cfm.mol.rotation.y+=dt*.6;const f=clamp(PR.tf/X.tstar,0,2);const col=f<1?new THREE.Color(0x6FB443).lerp(new THREE.Color(0xE8C25A),f):new THREE.Color(0xE8C25A).lerp(new THREE.Color(0x8a4a22),Math.min(1,f-1));cfm.molM.forEach(m=>m.color.copy(col))}};
+readCtl();
+let last=performance.now();
+function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;for(const St of stages){if(!St.vis)continue;if(!paused&&St.update)St.update(dt);draw(St,paused?0:dt)}requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+})();
+
+</script>
+</body>
+</html>
